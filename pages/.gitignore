@@ -1,6 +1,6 @@
 # Quarto
-/.quarto/
-/_site/
+.quarto/
+_site/
 
 # R
 .Rhistory
