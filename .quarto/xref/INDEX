@@ -1,0 +1,26 @@
+{
+  "index.qmd": {
+    "index.html": "04489cdd"
+  },
+  "MATPLOTLIB_STYLE_GUIDE.md": {
+    "MATPLOTLIB_STYLE_GUIDE.html": "f7d35766"
+  },
+  "pages/page1.qmd": {
+    "page1.html": "784ea491"
+  },
+  "pages/page2.qmd": {
+    "page2.html": "593cf24c"
+  },
+  "pages/page3.qmd": {
+    "page3.html": "531f7c66"
+  },
+  "pages/page4.qmd": {
+    "page4.html": "cdbf1c2a"
+  },
+  "pages/page5.qmd": {
+    "page5.html": "1678d78f"
+  },
+  "TEMPLATE_LOCK.md": {
+    "TEMPLATE_LOCK.html": "f2743f1a"
+  }
+}

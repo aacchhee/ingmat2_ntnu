@@ -1,0 +1,21 @@
+project:
+  type: website
+
+filters:
+  - pyodide
+
+website:
+  title: "Matematikk"
+  sidebar:
+    style: "docked"
+    contents:
+      - pages/page1.qmd
+      - pages/page2.qmd
+      - pages/page3.qmd
+      - pages/page4.qmd
+      - pages/page5.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
