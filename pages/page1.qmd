@@ -54,7 +54,7 @@ plt.show()
 Åpne ei sak på github <https://github.com/aacchhee/ingmat2_ntnu>. Lag en god beskrivelse av saka.
 
 ### Den beste metoden
-Gå til github <https://github.com/aacchhee/ingmat2_ntnu>, clone repository, fix a bug, send pull request. 
+Gå til github <https://github.com/aacchhee/ingmat2_ntnu>, clone repository (via fork), fix a bug, send pull request. 
 
 ### Siste utvei
 Det er aldri for seint å åpne en konto på github. Har du sterke innvendinger mot github, send en epost til <andrey.chesnokov@ntnu.no> og beskriv saka i eposten.
