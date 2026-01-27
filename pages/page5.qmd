@@ -1,5 +1,5 @@
 ---
-title: "Modul 4 – Taylors teorem"
+title: "Del 4 – Taylors teorem"
 ---
 
 ::: {.panel-tabset}

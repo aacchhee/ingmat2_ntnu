@@ -1,5 +1,5 @@
 ---
-title: "Modul 3 – Kritiske punkt og optimering"
+title: "Del 3 – Kritiske punkt og optimering"
 ---
 
 ::: {.panel-tabset}

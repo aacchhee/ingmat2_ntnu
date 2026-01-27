@@ -1,5 +1,5 @@
 ---
-title: "Modul 2 – Derivasjon i flere dimensjoner"
+title: "Del 2 – Derivasjon i flere dimensjoner"
 ---
 
 ::: {.panel-tabset}

@@ -9,11 +9,21 @@ website:
   sidebar:
     style: "docked"
     contents:
-      - pages/page1.qmd
-      - pages/page2.qmd
-      - pages/page3.qmd
-      - pages/page4.qmd
-      - pages/page5.qmd
+      - text: "IDE"
+        file: pages/page1.qmd
+
+      - section: "Fellesmodul"
+        contents:
+          - pages/page2.qmd
+          - pages/page3.qmd
+          - pages/page4.qmd
+          - pages/page5.qmd
+
+      - section: "PDE"
+        contents:
+          - pages/page6.qmd
+          - pages/page7.qmd
+          - pages/page8.qmd
 
 format:
   html:

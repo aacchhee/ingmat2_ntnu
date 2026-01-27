@@ -1,5 +1,5 @@
 ---
-title: "Modul 1 – Funksjoner av flere variabler"
+title: "Del 1 – Funksjoner av flere variabler"
 ---
 
 ::: {.panel-tabset}
