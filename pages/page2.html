@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,14 +32,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5d2e30ad26079c1dae90a1fd11eba2b9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c30451789a0a2bcd5e941535c675cd30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -476,7 +477,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -638,11 +639,11 @@ window.Quarto = {
 
 
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" aria-current="page">1.1 Definisjoner</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">1.2 Visualisering</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false">1.3 Eksempler</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">1.1 Definisjoner</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">1.2 Visualisering</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">1.3 Eksempler</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Funksjoner generelt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Funksjoner av flere variable</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Funksjoner generelt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Funksjoner av flere variable</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>Her kommer en påminnelse av diverse begrep rundt funksjoner som vi lærte i matematikk 1. Mer informasjon om begrepene kan du finne ved å lese <a href="https://math.libretexts.org/Bookshelves/Linear_Algebra/Interactive_Linear_Algebra_(Margalit_and_Rabinoff)/03%3A_Linear_Transformations_and_Matrix_Algebra/3.01%3A_Matrix_Transformations">her</a>.</p>
@@ -654,7 +655,7 @@ window.Quarto = {
 </ul>
 <p>Vi har sett i matematikk 1 at funksjoner kan være injektive, surjektive og bijektive. Hvis du trenger en påminnelse, så kan du gå tilbake til fagstoffet i matematikk 1. Du kan også lese mer <a href="https://math.libretexts.org/Bookshelves/Linear_Algebra/Interactive_Linear_Algebra_(Margalit_and_Rabinoff)/03%3A_Linear_Transformations_and_Matrix_Algebra/3.02%3A_One-to-one_and_Onto_Transformations">her</a>. En kort oppsummering av disse egenskapene er: - <em>Injektiv</em> (en-til-en): Alle elementer i verdimengden <span class="math inline">\(f(X)\)</span> treffes av bare et element <span class="math inline">\(x\in X\)</span>. - <em>Surjektiv</em>: Alle elementer i verdiområdet <span class="math inline">\(Y\)</span> kan treffes. - <em>Bijektiv</em>: Både injektiv og surjektiv.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Eksempel 1 - endelige mengder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Eksempel 2 - lineære transformasjoner</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Eksempel 3 - løsninger til ordinære differensialligninger</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Eksempel 1 - endelige mengder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Eksempel 2 - lineære transformasjoner</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Eksempel 3 - løsninger til ordinære differensialligninger</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>For eksempel, om domenet er mengden <span class="math inline">\(X = \{1,2,3\}\)</span> og verdiområdet er <span class="math inline">\(Y=\{4,5,6\}\)</span> kan vi lage funksjonene <span class="math inline">\(f:X\to Y\)</span> og <span class="math inline">\(g:X\to Y\)</span> som følger:</p>
@@ -727,7 +728,7 @@ y' = y^2 + 1, \quad y(0) = 0.
 \mathbb{R} \rightarrow \mathbb{R}\)</span> eller <span class="math inline">\(\mathbb{R}^2\rightarrow\mathbb{R}\)</span> for tovariabelfunksjoner.</p>
 <p>Vi kommer til å ha spesielt fokus på funksjoner av to variable. La oss se på noen eksempler på slike funksjoner.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Eksempel 4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Eksempel 5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Eksempel 6</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Eksempel 4</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Eksempel 5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Eksempel 6</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>La <span class="math inline">\(f:\mathbb{R}^2\to \mathbb{R}\)</span> være gitt ved formelen <span class="math display">\[f(x,y)=x-y.\]</span> Dette er et eksempel på en funksjon av to variable. Her kan vi sette inn et punkt <span class="math inline">\((x,y)\)</span>, som for eksempel <span class="math inline">\(x=1\)</span> og <span class="math inline">\(y=2\)</span>, og få ut verdien <span class="math display">\[f(1,2)=1-2=-1.\]</span> Dette er også et eksempel på en lineær transformasjon, da vi kan skrive funksjonen på matriseformen <span class="math display">\[f(x,y)=\begin{pmatrix}
@@ -771,11 +772,11 @@ x\\  y
 </ul></li>
 </ol>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Kurveplott</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Visualiseringer for skalare funksjoner av to variabler</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Kurveplott</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Visualiseringer for skalare funksjoner av to variabler</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Kodeskisse for plotting</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Kurveplott i planet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Kurveplott i rommet</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Kodeskisse for plotting</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Kurveplott i planet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Kurveplott i rommet</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div id="qpyodide-insertion-location-1"></div>
@@ -813,7 +814,7 @@ x\\  y
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <p>Det finnes flere muligheter for visualisering av en funksjon <span class="math inline">\(f:\mathbb{R}^2\to \mathbb{R}\)</span>. Den mest direkte analogien til grafen av en envariabelfunksjon er det som kalles <em>overflateplott</em>. I tillegg til dette skal vi også lære om <em>nivåkurveplott</em> og <em>varmeplott</em>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Overflateplott</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Nivåkurveplott</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Varmeplott</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Overflateplott</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Nivåkurveplott</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Varmeplott</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <p>La oss si at vi ønsker å visualisere funksjonen</p>
@@ -866,7 +867,7 @@ x\\  y
 <p>Hva med spenning? Den er generelt avhengig av både posisjon <span class="math inline">\(\vec{x}\)</span> og et tverrsnitt (det er nok å oppgi bare en normalvektor <span class="math inline">\(\vec{n}\)</span>), og er en vektor selv. Den er også en funksjon <span class="math inline">\(\tau(\vec{x},\vec{n}):\mathbb{R}^3 \times \mathbb{R}^3 \rightarrow \mathbb{R}^3\)</span>, men det er ikke hele historien. Hvis vi tar en vilkårlig <span class="math inline">\(\vec{x}\)</span> og holder den konstant er funksjonen <span class="math inline">\(\tau(\vec{x},\vec{n}):\mathbb{R}^3\rightarrow\mathbb{R}\)</span> en lineær transformasjon, og kan dermed skrives som en matrise! Enda bedre viser det seg (se Bell, Konstruksjonsmekanikk, II.9) at matrisen er symmetrisk! Dermed er det trolig best å tenke på spenning som en funksjon <span class="math inline">\(\mathbb{R}^3\rightarrow Y\)</span>, hvor <span class="math inline">\(Y\)</span> er rommet av <span class="math inline">\(3\times 3\)</span> symmetriske matriser.</p>
 <p>Tøyning er en annen funksjon av samme type (se Bell, Konstruksjonsmekanikk, II.10).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Elektrofag</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Informatikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Kjemi og materialteknologi</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false">Logistikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-5" role="tab" aria-controls="tabset-7-5" aria-selected="false">Geomatikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-6" role="tab" aria-controls="tabset-7-6" aria-selected="false">Termodynamikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-7" role="tab" aria-controls="tabset-7-7" aria-selected="false">Fysikk</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Elektrofag</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Informatikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Kjemi og materialteknologi</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false" href="">Logistikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-5" role="tab" aria-controls="tabset-7-5" aria-selected="false" href="">Geomatikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-6" role="tab" aria-controls="tabset-7-6" aria-selected="false" href="">Termodynamikk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-7" role="tab" aria-controls="tabset-7-7" aria-selected="false" href="">Fysikk</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <p>Grunnleggende elektrolære bruker vektorfelt, dvs. funksjoner på formen <span class="math inline">\(\mathbb{R}^3\rightarrow\mathbb{R}^3\)</span>. Eksempler er elektriske og magnetiske felt. Vi har også strømtetthet, elektrisk forskyvning/polarisering og magnetisering, som også er vektorfelt. Ladingstetthet og elektrisk potensial er eksempler på skalare funksjoner <span class="math inline">\(\mathbb{R}^3\rightarrow\mathbb{R}\)</span>.</p>
@@ -966,13 +967,14 @@ x\\  y
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -987,7 +989,7 @@ x\\  y
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/aacchhee\.github\.io\/ingmat2_ntnu\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
