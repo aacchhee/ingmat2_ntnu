@@ -3,7 +3,7 @@ name: Render and Publish Quarto
 permissions:
   contents: write
 
-  oncurrency:
+concurrency:
   group: gh-pages
   cancel-in-progress: true
 
