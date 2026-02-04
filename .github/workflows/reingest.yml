@@ -9,6 +9,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Re-ingest
-        run: |
-          sudo -n /usr/local/bin/rag_update_and_ingest
+        - run: touch /var/lib/rag/reingest.trigger
+
         
