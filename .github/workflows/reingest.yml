@@ -1,0 +1,13 @@
+name: Re-ingest notes on push
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  reingest:
+    runs-on: [self-hosted, ntnu, rag]
+    steps:
+      - name: Update notes, rebuild FAISS, restart rag
+        run: |
+          sudo -n /usr/local/bin/rag_update_and_ingest
