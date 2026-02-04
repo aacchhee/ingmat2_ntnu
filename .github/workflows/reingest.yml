@@ -8,8 +8,7 @@ jobs:
   reingest:
     runs-on: self-hosted
     steps:
-      - name: Debug user + sudo
+      - name: Re-ingest
         run: |
-          whoami
-          id
-          sudo -n -l || true
+          sudo -n /usr/local/bin/rag_update_and_ingest
+        
