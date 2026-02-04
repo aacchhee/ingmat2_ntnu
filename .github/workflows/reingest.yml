@@ -6,8 +6,10 @@ on:
 
 jobs:
   reingest:
-    runs-on: [self-hosted, ntnu, rag]
+    runs-on: self-hosted
     steps:
-      - name: Update notes, rebuild FAISS, restart rag
+      - name: Debug user + sudo
         run: |
-          sudo -n /usr/local/bin/rag_update_and_ingest
+          whoami
+          id
+          sudo -n -l || true
