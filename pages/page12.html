@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Del 4 – Taylors teorem – Matematikk</title>
+<title>10 - Poissonligning, 2D – Matematikk</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -287,7 +287,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nplt.close(\"all\")\nfig = plt.figure()\nax = fig.add_subplot(111)\n\n\n# 100 punkter mellom 0.2 og 3, for grafene til venstre\nx = np.linspace(0.2,3,100)\n\n# 100 punkter mellom 0.8 og 1.2, for grafene til høyre\ny = np.linspace(0.8,1.2,100)\n\n# log(x) på punktene mellom 0.2 og 3\nf = np.log(x)\n# log(y) på punktene mellom 0.8 og 1.2\ng = np.log(y)\n\n# lager figuren\n\n# plottene til venstre, 0.2<x<3\n# plotter y=log(x) i blå\nax.plot(x,f)\n# plotter y=x-1 i oransje\nax.plot(x,x-1)\n\n# plottene til høyre, 0.8<x<1.2\n# plotter y=log(x) i blå\nax.plot(y,g)\n# plotter y=x-1 i oransje\nax.plot(y,y-1)\n\nplt.show()","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nplt.close(\"all\")\nfig = plt.figure()\nax = fig.add_subplot(111)\n\n# 100 punkter mellom 0.2 og 3, for grafene til venstre\nx = np.linspace(0.2,3,100)\n# 100 punkter mellom 0.7 og 1.3, for grafene til høyre\ny = np.linspace(0.7,1.3,100)\n\n# log(x) på punktene mellom 0.2 og 3\nf = np.log(x)\n# log(y) på punktene mellom 0.7 og 1.3\ng = np.log(y)\n\n# andreordens taylor tilnærming mellom 0.2 og 3\nf2 = (x-1) - 0.5*(x-1)**2\n# andreordens taylor tilnærming mellom 0.7 og 1.3\ng2 = (y-1) - 0.5*(y-1)**2\n\n# Lag figuren\n\n# til venstre, 0.2<x<3\n# log(x) i blå,\nax.plot(x,f)\n# andreordens taylor i oransje, \nax.plot(x,f2)\n\n# til høyre, 0.7<x<1.3\n# log(x) i blå\nax.plot(y,g)\n# andreordens taylor i oransje\nax.plot(y,g2)\n\nplt.show()","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nplt.close(\"all\")\n\n\n# 100 punkter mellom 1 og 3\nx = np.linspace(1,3,100)\n\n# funksjonen f(x) defineres; kan nå kalles som f(x)\ndef f(x):\n    return x + (x-1)*(x-2)*(x-3)\n\n# plotter y=x i mørk blå, som er sekanten mellom f(1) og f(3)\nplt.plot(x,x)\n# plotter y=f(x) i oransje, selveste funksjonen\nplt.plot(x,f(x))\n\n# plotter 2 tangentlinjer med samme stigningstall som sekanten, begge i cyan\n\n# plotter tangentlinjen gjennom 2-1/sqrt(3)\nplt.plot(x,x+f(2-1/np.sqrt(3)) - (2-1/np.sqrt(3)),color='c' ) \n# plotter tangentlinjen gjennom 2+1/sqrt(3)\nplt.plot(x,x+f(2+1/np.sqrt(3)) - (2+1/np.sqrt(3)),color='c' )\n\nplt.show()","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nplt.close(\"all\")\nfig = plt.figure()\nax = fig.add_subplot(projection='3d')\n\n\n#lag rutenettet på [-1,1]x[-1,1], brukes til venstre\n\nX, Y = np.meshgrid(np.linspace(-1, 1, 256), np.linspace(-1, 1, 256))\n\n#lag rutenettet på [1.8,2.1]x[1.8,2.1], brukes til høyre\n# vi kutter av vi 2.1 siden funksjonen er ikke definert når x**2 + y**2 > 9\n\nXX, YY = np.meshgrid(np.linspace(1.8, 2.1, 256), np.linspace(1.8, 2.1, 256))\n\n# f(x,y) på rutenettet til venstre\nZ1 = np.sqrt(9- X**2 - Y**2)\n\n# lineærisering på rutenettet til venstre \n# 0*Y er et enkelt hack for å gi en array med samme dimensjoner som X, Y; ellers vil Z2=3 gi bare et skalar tall\n\nZ2 = 3 + 0*Y\n\n# f(x,y) på rutenettet til høyre\nZZ1 = np.sqrt(9- XX**2 - YY**2)\n\n# lineærisering på rutenettet til høyre\nZZ2 = 9 - 2*XX - 2*YY\n\n# lag figuren\n\n# til venstre viser vi lineærisering rundt origo, innenfor [-1,1]x[-1,1]\n# plotter f(x,y) i blå  \nax.plot_surface(X, Y, Z1)\n# plotter lineærisering i oransje\nax.plot_surface(X, Y, Z2)\n\n# til høyre viser vi lineærisering rundt x=y=2, innenfor [1.8,2.1]x[1.8,2.1]\n# plotter f(x,y) i blå\nax.plot_surface(XX, YY, ZZ1)\n# plotter lineærisering i oransje, ser ganske brunt grunnet kort avstand til den blå overflaten\nax.plot_surface(XX, YY, ZZ2)\n\nplt.show()\n\nplt.show()","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nplt.close(\"all\")\nfig = plt.figure()\nax = fig.add_subplot(projection='3d')\n\n# bruker samme rutenett på [-1,1]x[1,1] som i forrige eksempel\n# X og Y er også uendret\n\n# den andreordens taylor tilnærming rundt origo\nZ3 = 3 - (1/3)*(X**2 + Y**2)\n\n# lager figuren\n\n# plotter f(x,y) i blå - Z1 er altså samme som før\nax.plot_surface(X, Y, Z1)\n# plotter den andre ordens taylor tilnærming rundt origo i oransje\nax.plot_surface(X, Y, Z3)\n\nplt.show()","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Introduksjon til 2D-arrays i NumPy\n# ------------------------------------------------------------\n# I 2D-problemer (for eksempel PDE-er i planet),\n# vil løsningen ofte lagres som en matrise.\n# ------------------------------------------------------------\n\n# Eksempel på en 2D-array (matrise)\nu = np.array([\n    [1, 2, 3, 4],\n    [5, 6, 7, 8]\n])\n\n# Antall rader (y-retning) og kolonner (x-retning)\nm = u.shape[0]\nn = u.shape[1]\n\nprint(\"Antall rader m =\", m)\nprint(\"Antall kolonner n =\", n)\n\n# ------------------------------------------------------------\n# Reshape: matrise <-> vektor\n# ------------------------------------------------------------\n# Ofte må vi løse lineære systemer A u = f,\n# der u må være en vektor.\n# Da flater vi ut matrisen til én lang vektor.\n# ------------------------------------------------------------\n\n# Gjør om fra matrise til vektor (radvis)\nu_vec = np.reshape(u, m * n)\n\nprint(\"u som vektor:\")\nprint(u_vec)\n\n# Og tilbake til matrise igjen\nu_mat = np.reshape(u_vec, (m, n))\n\nprint(\"u tilbake som matrise:\")\nprint(u_mat)\n\n# ------------------------------------------------------------\n# Enkel visualisering\n# ------------------------------------------------------------\n# Vi plotter første rad i matrisen som et 1D-plott\nplt.figure(figsize=(6, 4))\nplt.plot(u_mat[0, :], marker=\"o\")\nplt.xlabel(\"kolonneindeks\")\nplt.ylabel(\"verdi\")\nplt.title(\"Første rad av 2D-arrayen u\")\nplt.show()","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# 2D-gitter på [0,1]x[0,1] og 2D-Laplace-operator (for hånd)\n#\n# Vi har m indre punkter i x-retning og n indre punkter i y-retning.\n# Totalt blir det m*n ukjente, og Laplace-operatoren blir en (m*n)x(m*n)-matrise.\n# ------------------------------------------------------------\n\n# Antall INDRE punkter i x- og y-retning\nm = 3\nn = 3\n\n# Gitterpunkter inkludert randpunkter (0 og 1)\nx = np.linspace(0, 1, m + 2)\ny = np.linspace(0, 1, n + 2)\n\n# Steglengder\nh = x[1] - x[0]   # dx\nk = y[1] - y[0]   # dy\n\nprint(\"dx =\", h, \"dy =\", k)\n\n# ------------------------------------------------------------\n# Indeksering:\n# Vi nummererer de indre punktene (i,j) med én indeks p:\n#\n#   i = 0,1,...,m-1   (x-retning, indre punkter)\n#   j = 0,1,...,n-1   (y-retning, indre punkter)\n#\n#   p = i + m*j   (radvis/kolonnevis flating)\n#\n# Dermed:\n#   høyre nabo:  (i+1,j) -> p+1\n#   venstre nabo:(i-1,j) -> p-1\n#   opp nabo:    (i,j+1) -> p+m\n#   ned nabo:    (i,j-1) -> p-m\n# ------------------------------------------------------------\n\nN = m * n  # totalt antall ukjente\nL_for = np.zeros((N, N))\n\nfor p in range(N):\n    i = p % m      # x-indeks (indre)\n    j = p // m     # y-indeks (indre)\n\n    # Kobling i x-retning (høyre/venstre)\n    if i < m - 1:\n        L_for[p, p + 1] = 1 / h**2\n    if i > 0:\n        L_for[p, p - 1] = 1 / h**2\n\n    # Kobling i y-retning (opp/ned)\n    if j < n - 1:\n        L_for[p, p + m] = 1 / k**2\n    if j > 0:\n        L_for[p, p - m] = 1 / k**2\n\n    # Diagonalledd: -2/dx^2 - 2/dy^2 (standard 5-punkts stencil)\n    L_for[p, p] = -2 / h**2 - 2 / k**2\n\nprint(\"2D-Laplace-matrise (for hånd):\")\nprint(L_for)\n\n# ------------------------------------------------------------\n# Visualisering av selve 2D-gitteret (inkl. randpunkter)\n# ------------------------------------------------------------\nX, Y = np.meshgrid(x, y, indexing=\"xy\")\n\nplt.figure(figsize=(5, 5))\nplt.plot(X, Y, \"k.\", markersize=6)   # alle punkter\nplt.title(\"2D-gitter på [0,1]×[0,1] (inkl. randpunkter)\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.axis(\"equal\")\nplt.show()","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# 2D-Laplace-operator ved hjelp av Kroneckerprodukt\n#\n# På et rektangel [0,1]×[0,1] med Dirichlet-randbetingelser\n# diskretiserer vi Laplace-operatoren med 5-punkts stencil:\n#\n#   Δu ≈ (u_{i+1,j} - 2u_{i,j} + u_{i-1,j})/dx^2\n#      + (u_{i,j+1} - 2u_{i,j} + u_{i,j-1})/dy^2\n#\n# Når vi flater ut u(i,j) til en vektor, kan vi skrive 2D-operatoren som:\n#\n#   L_2D = kron(Lx, I_y) + kron(I_x, Ly)\n# ------------------------------------------------------------\n\n# Antall INDRE punkter i x- og y-retning\nm = 20\nn = 20\n\n# Gitter (inkl. randpunkter)\nx = np.linspace(0, 1, m + 2)\ny = np.linspace(0, 1, n + 2)\n\ndx = x[1] - x[0]\ndy = y[1] - y[0]\n\nprint(f\"dx = {dx:.4f}, dy = {dy:.4f}\")\n\n# ------------------------------------------------------------\n# 1D Laplace-matriser på indre punkter\n# (tridiagonal: -2 på diagonal, 1 på nabo-diagonaler)\n# ------------------------------------------------------------\n\nLx = (1 / dx**2) * (\n    np.diag((m - 1) * [1], -1) +\n    np.diag(m * [-2], 0) +\n    np.diag((m - 1) * [1], 1)\n)\nIx = np.eye(m)\n\nLy = (1 / dy**2) * (\n    np.diag((n - 1) * [1], -1) +\n    np.diag(n * [-2], 0) +\n    np.diag((n - 1) * [1], 1)\n)\nIy = np.eye(n)\n\n# ------------------------------------------------------------\n# 2D Laplace-operator (på formen (m*n)×(m*n))\n# ------------------------------------------------------------\nL = np.kron(Lx, Iy) + np.kron(Ix, Ly)\n\nprint(\"Størrelse på L:\", L.shape)\n\n# ------------------------------------------------------------\n# Visualisering: strukturen til matrisen\n# (Spy-plot viser hvor de ikke-null elementene ligger)\n# ------------------------------------------------------------\nplt.figure(figsize=(6, 4))\nplt.spy(L, markersize=1)\nplt.title(\"Struktur (sparsity) til 2D-Laplace-matrisen\")\nplt.xlabel(\"kolonneindeks\")\nplt.ylabel(\"radindeks\")\nplt.show()","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Randbetingelser i 2D (Dirichlet) og bidrag til høyresiden F\n#\n# Vi løser typisk Poisson-problemet på (0,1)×(0,1):\n#   -Δu = f\n#\n# Ukjente er kun i de indre punktene:\n#   x[1:-1] og y[1:-1]\n#\n# Randverdier u = g gis på randen:\n#   y = 0   (bunn):   u(x,0) = f1(x)\n#   y = 1   (topp):   u(x,1) = f2(x)\n#   x = 0   (venstre):u(0,y) = f3(y)\n#   x = 1   (høyre):  u(1,y) = f4(y)\n#\n# Når vi diskretiserer Laplace-operatoren, kommer randverdiene inn i\n# ligningene for punktene nær randen, og flyttes derfor over til høyresiden F.\n# ------------------------------------------------------------\n\n# --- \"kantvektorer\" som plukker ut første og siste indre indeks ---\n# Disse gir koeffisientene -1/dx^2 eller -1/dy^2 i riktig posisjon\nZm_l = np.zeros(m)     # venstre kolonne (første indre x-indeks)\nZm_l[0] = -1 / (h**2)\n\nZm_r = np.zeros(m)     # høyre kolonne (siste indre x-indeks)\nZm_r[-1] = -1 / (h**2)\n\nZn_l = np.zeros(n)     # nederste rad (første indre y-indeks)\nZn_l[0] = -1 / (k**2)\n\nZn_r = np.zeros(n)     # øverste rad (siste indre y-indeks)\nZn_r[-1] = -1 / (k**2)\n\n# ------------------------------------------------------------\n# Dirichlet-randbetingelser (velg gjerne andre funksjoner)\n# ------------------------------------------------------------\ndef f1(x):\n    \"\"\"u(x,0) (bunnrand)\"\"\"\n    return 0 * x\n\ndef f2(x):\n    \"\"\"u(x,1) (topprand)\"\"\"\n    return np.sin(np.pi * x)\n\ndef f3(y):\n    \"\"\"u(0,y) (venstre rand)\"\"\"\n    return 0 * y\n\ndef f4(y):\n    \"\"\"u(1,y) (høyre rand)\"\"\"\n    return 0 * y\n\n\n# ------------------------------------------------------------\n# Bygg høyresiden F fra randbetingelsene\n#\n# Vi bruker samme vektoriseringsidé som ved Kroneckerprodukt:\n# u(i,j) flates ut til én vektor i en bestemt rekkefølge.\n#\n# Her bygger vi kun randbidraget. (Eventuelt volumledd f(x,y) legges til senere.)\n# ------------------------------------------------------------\n\nx_in = x[1:-1]  # indre x-punkter (m stk)\ny_in = y[1:-1]  # indre y-punkter (n stk)\n\nF = (\n    np.kron(f1(x_in), Zn_l) +   # bunnrand y=0\n    np.kron(f2(x_in), Zn_r) +   # topprand y=1\n    np.kron(Zm_l, f3(y_in)) +   # venstre rand x=0\n    np.kron(Zm_r, f4(y_in))     # høyre rand x=1\n)\n\nprint(\"Størrelse på F:\", F.shape)\n\n# ------------------------------------------------------------\n# (Liten sanity check) Plott randfunksjonene i x-retning\n# ------------------------------------------------------------\nplt.figure(figsize=(6, 4))\nplt.plot(x_in, f1(x_in), \"--\", label=\"u(x,0) = f1(x)\")\nplt.plot(x_in, f2(x_in), \"-\",  label=\"u(x,1) = f2(x)\")\nplt.xlabel(\"x\")\nplt.ylabel(\"randverdi\")\nplt.title(\"Randbetingelser på y=0 og y=1\")\nplt.legend()\nplt.show()","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Legg til volumledd (kildeledd) f(x,y) i høyresiden\n#\n# For eksempel for Poisson:\n#   -Δu = f(x,y)\n#\n# I forrige kode bygget vi F fra randbetingelsene.\n# Nå legger vi til bidraget fra f(x,y) evaluert i indre punkter.\n# ------------------------------------------------------------\n\n# Indre punkter\nx_in = x[1:-1]   # m punkter\ny_in = y[1:-1]   # n punkter\n\n# Lager rutenett av indre punkter\n# indexing=\"ij\" betyr:\n#   X[i,j] = x_in[i]  og  Y[i,j] = y_in[j]\n# (dette passer med indeksering u(i,j) der i går i x-retning og j i y-retning)\nX, Y = np.meshgrid(x_in, y_in, indexing=\"ij\")\n\n# ------------------------------------------------------------\n# Kildeledd f(x,y)\n# Her bruker vi f=0 som standard (bytt gjerne til noe annet)\n# ------------------------------------------------------------\ndef f_source(x, y):\n    \"\"\"Kildeledd f(x,y) i -Δu = f.\"\"\"\n    return 0 * x * y\n\n# Funksjonsverdier på rutenettet (m x n matrise)\nZ = f_source(X, Y)\n\n# Vektoriser (må samsvare med samme rekkefølge som vi bruker ellers)\nG = np.reshape(Z, m * n)\n\n# Legg volumleddet til høyresiden (som allerede inneholder randbidrag)\nF = F + G\n\nprint(\"Størrelse på G:\", G.shape)\nprint(\"Størrelse på F:\", F.shape)\n\n# ------------------------------------------------------------\n# Visualisering av f(x,y) på indre punkter (valgfritt, men nyttig)\n# ------------------------------------------------------------\nplt.figure(figsize=(5, 4))\nplt.imshow(Z.T, origin=\"lower\", aspect=\"auto\",\n           extent=[x_in[0], x_in[-1], y_in[0], y_in[-1]])\nplt.colorbar(label=\"f(x,y)\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Kildeledd f(x,y) på indre gitterpunkter\")\nplt.show()","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nimport numpy.linalg as la\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Løs det lineære systemet L u = F\n# ------------------------------------------------------------\n\nu = la.solve(L, F)\nU = np.reshape(u, (m, n))\n\n# ------------------------------------------------------------\n# 3D-visualisering (samme skala/stil som tidligere)\n# ------------------------------------------------------------\n\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(10, 8)\n)\n\nax.plot_surface(X, Y, U, cmap=\"viridis\")\n\n# Samme romlige skala som gitteret\nax.set_xlim(x[1], x[-2])\nax.set_ylim(y[1], y[-2])\n\n# Z-skala basert på løsningen (gir stabil visning)\nax.set_zlim(np.min(U), np.max(U))\n\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"u(x,y)\")\nax.set_title(\"Numerisk løsning av 2D Poisson-problem\")\n\nplt.show()","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Analytisk løsning av 2D Laplace-problem\n#\n# Vi ser på Laplace-ligningen:\n#   -Δu = 0   på (0,1)×(0,1)\n#\n# med randbetingelser:\n#   u(x,0) = 0\n#   u(x,1) = sin(πx)\n#   u(0,y) = u(1,y) = 0\n#\n# Denne har den analytiske løsningen:\n#   u(x,y) = sin(πx) * sinh(πy) / sinh(π)\n# ------------------------------------------------------------\n\ndef u_exact(x, y):\n    \"\"\"Analytisk løsning u(x,y).\"\"\"\n    return np.sin(np.pi * x) * np.sinh(np.pi * y) / np.sinh(np.pi)\n\n# Evaluer analytisk løsning på samme indre rutenett som før\nZ = u_exact(X, Y)\n\n# ------------------------------------------------------------\n# 3D-visualisering (samme stil/skala som numerisk løsning)\n# ------------------------------------------------------------\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(10, 8)\n)\n\nax.plot_surface(X, Y, Z, cmap=\"viridis\")\n\nax.set_xlim(x[1], x[-2])\nax.set_ylim(y[1], y[-2])\nax.set_zlim(np.min(Z), np.max(Z))\n\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"u(x,y)\")\nax.set_title(\"Analytisk løsning av 2D Laplace-problem\")\n\nplt.show()","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Feilflate: |u_numerisk - u_analytisk|\n#\n# Forutsetter:\n#   U : numerisk løsning på indre punkter (form m x n)\n#   X, Y : rutenett for indre punkter\n# ------------------------------------------------------------\n\n# Analytisk løsning (samme som tidligere)\ndef u_exact(x, y):\n    return np.sin(np.pi * x) * np.sinh(np.pi * y) / np.sinh(np.pi)\n\n# Evaluer analytisk løsning på rutenettet\nU_exact = u_exact(X, Y)\n\n# Beregn punktvis absolutt feil\nE = np.abs(U - U_exact)\n\nprint(\"Maksimal absolutt feil:\", np.max(E))\n\n# ------------------------------------------------------------\n# 3D-visualisering av feilflaten\n# ------------------------------------------------------------\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(10, 8)\n)\n\nax.plot_surface(X, Y, E, cmap=\"inferno\")\n\nax.set_xlim(x[1], x[-2])\nax.set_ylim(y[1], y[-2])\nax.set_zlim(0, np.max(E))\n\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"absolutt feil\")\nax.set_title(\"Feilflate |u_numerisk − u_analytisk|\")\n\nplt.show()","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# ------------------------------------------------------------\n# Vertikal oppsummeringsfigur: numerisk arbeidsflyt i 2D\n# ------------------------------------------------------------\n\nfig, ax = plt.subplots(figsize=(6, 8))\nax.axis(\"off\")\n\n# Tekstbokser: (x, y, tekst)\nboxes = [\n    (0.5, 0.85, \"PDE\\n−Δu = f\\npå Ω\"),\n    (0.5, 0.65, \"Diskretisering\\n(gitter + differanser)\"),\n    (0.5, 0.45, \"Lineært system\\nL u = F\"),\n    (0.5, 0.25, \"Numerisk løsning\\nu ≈ u(x,y)\"),\n    (0.5, 0.08, \"Visualisering\\n(2D / 3D / feilflate)\")\n]\n\n# Tegn bokser\nfor x0, y0, text in boxes:\n    ax.text(\n        x0, y0, text,\n        ha=\"center\", va=\"center\",\n        bbox=dict(boxstyle=\"round,pad=0.5\", fc=\"lightgray\", ec=\"black\"),\n        fontsize=11\n    )\n\n# Tegn piler mellom boksene\narrowprops = dict(arrowstyle=\"->\", lw=2)\n\nfor i in range(len(boxes) - 1):\n    ax.annotate(\n        \"\",\n        xy=(boxes[i+1][0], boxes[i+1][1] + 0.06),\n        xytext=(boxes[i][0], boxes[i][1] - 0.06),\n        arrowprops=arrowprops\n    )\n\nax.set_title(\n    \"Arbeidsflyt i numerisk løsning av 2D randverdiproblemer\",\n    fontsize=13\n)\n\nplt.show()","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 /* Set variable for backend 
 for Groq Server: "groq"
@@ -505,7 +505,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/page2.html">Fellesmodul</a></li><li class="breadcrumb-item"><a href="../pages/page5.html">Del 4 – Taylors teorem</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/page6.html">PDE</a></li><li class="breadcrumb-item"><a href="../pages/page12.html">10 - Poissonligning, 2D</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -565,7 +565,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/page5.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pages/page5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Del 4 – Taylors teorem</span></a>
   </div>
 </li>
@@ -618,7 +618,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/page12.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/page12.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">10 - Poissonligning, 2D</span></a>
   </div>
 </li>
@@ -649,9 +649,9 @@ window.Quarto = {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/page2.html">Fellesmodul</a></li><li class="breadcrumb-item"><a href="../pages/page5.html">Del 4 – Taylors teorem</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/page6.html">PDE</a></li><li class="breadcrumb-item"><a href="../pages/page12.html">10 - Poissonligning, 2D</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Del 4 – Taylors teorem</h1>
+<h1 class="title">10 - Poissonligning, 2D</h1>
 </div>
 
 
@@ -668,457 +668,183 @@ window.Quarto = {
 </header>
 
 
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">4.1 Taylors teorem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">4.2 Restledd</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">4.3 Taylors teorem – flere variabler</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<section id="taylors-teorem-1" class="level1">
-<h1>Taylors teorem</h1>
-<p>Det finnes et uendelig mangfold av funksjoner der ute! For å gjøre det litt mer håndterlig, er det ofte nyttig å bruke bedre kjente funksjoner som en tilnærming.</p>
-<p>Den aller viktigste slik tilnærminger bruker Taylors teorem, som handler om approksimasjon med polynomer.</p>
+<section id="differensiallikninger-i-2d" class="level1">
+<h1>Differensiallikninger i 2D</h1>
+<p>Her skal vi se på hvordan man håndterer:</p>
 <ol type="1">
-<li>Funksjoner av en variabel</li>
-<li>Funksjoner av en variabel II: restledd</li>
-<li>Funksjoner av flere variabler <span class="math inline">\(\mathbb{R}^n\rightarrow\mathbb{R}\)</span></li>
+<li>Poissonligning i 2D</li>
+<li>Varmeligning i (2+1)D</li>
+<li>2D bevaringslover og bølgeligning</li>
 </ol>
-<p><strong>Læringsmål</strong></p>
-<ul>
-<li>Forstår funksjonstilnærming av 1d funksjoner med Taylors teorem</li>
-<li>Forstår middelverdisetning og uttrykk for restledd</li>
-<li>Bruk restleddet til å estimere feilen ved Taylortilnærming</li>
-<li>Undersøk (med datamaskin) hva slags problemer kan oppstå med slike tilnærminger</li>
-<li>Utfør linearisering av skalare funksjoner av to variabler</li>
-<li>Utfør andre ordens Taylortilnærminger av funksjoner av to variabler, og koble mot kritisk punkter og den andre deriverte</li>
-</ul>
-<p>Vi skal altså finne tilnærminger</p>
+<p>Med (2+1)D mener vi to dimensjoner i rom, og en i tid, dvs <span class="math inline">\(u=u(x,y,t)\)</span>.</p>
+<section id="poissonligning" class="level2">
+<h2 class="anchored" data-anchor-id="poissonligning">1. Poissonligning</h2>
+<p>Situasjon er ganske lik i to dimensjoner:</p>
 <p><span class="math display">\[
-f(x) \approx P_k(x),
+u_{xx}(x,y) + u_{yy}(x,y) = f(x,y)
 \]</span></p>
-<p>hvor <span class="math inline">\(P_k(x)\)</span> er et polynom av orden <span class="math inline">\(k\)</span>, dvs. <span class="math inline">\(P_k(x) = a_k x^k + a_{k-1} x^{k-1} + \cdots\)</span>. Vi begynner med <span class="math inline">\(k=1\)</span>, som vi kaller for en lineær tilnærming, eller lineærisering. Etterpå tar vi <span class="math inline">\(k=2\)</span>, og så ser vi på helt vilkårlig <span class="math inline">\(k\)</span>.</p>
-<section id="lineær-tilnærming" class="level3">
-<h3 class="anchored" data-anchor-id="lineær-tilnærming">1. Lineær tilnærming</h3>
-<p>Vi kan bruke tangentlinjen gjennom et punkt <span class="math inline">\(x_0\)</span> til å tilnærme <span class="math inline">\(f(x)\)</span>, hvor <span class="math inline">\(x\)</span> er i nærheten av <span class="math inline">\(x_0\)</span>.</p>
-<p>Husk at tangentlinjen gjennom <span class="math inline">\((x_0, f(x_0))\)</span> er gitt av <span class="math display">\[
-y = f(x_0) + f'(x_0)(x-x_0)
+<p>De partiellderiverte tilnærmes med</p>
+<p><span class="math display">\[
+u_{xx}(x,y) \approx \frac{u(x+h,y)-2u(x,y) +u(x-h,y)}{h^2}
+\]</span> <span class="math display">\[
+u_{yy}(x,y) \approx \frac{u(x,y+k)-2u(x,y) +u(x,y-k)}{k^2}
 \]</span></p>
-<p>altså blir vår tilnærming <span class="math display">\[
-f(x) \approx f(x_0) + f'(x_0)(x-x_0).
+<p>Vi tar <span class="math inline">\(h,k\)</span> som konstanter, og <span class="math inline">\(u_{m,n}=u(hm,kn)\)</span>, og ender opp med et lineært system:</p>
+<p><span class="math display">\[
+\frac{1}{h^2} \big( u_{m+1,n} + u_{m-1,n} \big) +
+\frac{1}{k^2} \big( u_{m,n+1} + u_{m,n-1} \big) -
+\left( \frac{2}{h^2} + \frac{2}{k^2} \right)
+u_{n,m} = f(mh,nk),
 \]</span></p>
+<p>Det kan skrives i matriseform hvis vi skriver <span class="math inline">\(u = (u_{1,1}, u_{2,1},\ldots,u_{m,1},u_{1,2},\ldots)\)</span>. Den største utfordringen i forhold til den endimensjonale ligningen er hvordan man håndtere <span class="math inline">\(u\)</span> som en vektor, da det ville vært lettere å ha den som en todimensjonal array.</p>
+<section id="a-vektorisering-og-reshape" class="level3">
+<h3 class="anchored" data-anchor-id="a-vektorisering-og-reshape">a) Vektorisering og “reshape”</h3>
+<p>Den naturlige måte å lagre våre ukjente er i en array, <span class="math inline">\(u_{i,j} = u(x_i, y_j)\)</span>.</p>
+<p>Men målet vårt er å gjøre om poissonligningen til et lineært system</p>
+<p><span class="math display">\[
+L\vec{u} = \vec{F}
+\]</span></p>
+<p>som krever at vi gjør om <span class="math inline">\(u\)</span> til en vektor, for eksempel <span class="math inline">\(u = (u_{1,1}, u_{2,1},\ldots,u_{m,1},u_{1,2},\ldots)\)</span>. Det kalles for en <em>vektorisering</em> (https://en.wikipedia.org/wiki/Vectorization_(mathematics))</p>
+<p>Vi kan håndtere det gjennom bruk av “reshape” i numpy.</p>
 </section>
-<section id="eksempel-1-geometrisk-optikk" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-1-geometrisk-optikk">Eksempel 1: geometrisk optikk</h3>
-<p>La <span class="math inline">\(f(x)=\sin(x)\)</span> og <span class="math inline">\(x_0 = 0\)</span>. Da får vi</p>
-<p><span class="math display">\[
-f(x_0) = f(0) = \sin(0) = 0
-\]</span> og siden <span class="math inline">\(f'(x) = \cos(x)\)</span> får vi <span class="math display">\[
-f'(x_0) = \cos(x_0) = 1
-\]</span></p>
-<p>Vi har derfor <span class="math display">\[
-\sin(x) \approx 0 + 1\cdot x = x
-\]</span></p>
-<p>Vi har også <span class="math inline">\(\sin(x)\approx x\)</span> for små vinkler <span class="math inline">\(x\)</span>.</p>
-<p>Denne tilnærmingen er ekstremt viktig i optikk, blant annet. Snells lov (https://snl.no/Snells_lov) forklarer brytingen i en overflate ved</p>
-<p><span class="math display">\[
-n_1 \sin(\theta_1) = n_2 \sin(\theta_2),
-\]</span></p>
-<p>hvor <span class="math inline">\(n_i\)</span> er brytningsindeksene til materialene, og <span class="math inline">\(\theta_i\)</span> vinklene mot normalen til inn- og utfallende lys. Det kan vises ut fra Snells lov (<em>prøv selv, det er god repitisjon i videregående trigonometri!</em>) at parallelle linjer møter i det samme punkt om <span class="math inline">\(\sin(\theta_i)=\theta_i\)</span>. Avstand til punktet heter fokallengde.</p>
-<p>Hvis tilnærmingen bryter ned, kommer ikke punktene sammen likevel. Vi får da <em>sfærisk aberrasjon</em> (https://no.wikipedia.org/wiki/Sfærisk_aberrasjon). Bildet under viser den ideelle mot den reelle.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Spherical_aberration_2.svg/500px-Spherical_aberration_2.svg.png" class="img-fluid figure-img"></p>
-<figcaption>Spherical aberration</figcaption>
-</figure>
-</div>
-</section>
-<section id="eksempel-2" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-2">Eksempel 2</h3>
-<p>Finn en lineær tilnærming til <span class="math inline">\(\log(x)\)</span>.</p>
-<p>Det er ikke så smart å ta <span class="math inline">\(x_0=0\)</span> siden <span class="math inline">\(\log(0)\)</span> er ikke definert. La oss heller prøve med <span class="math inline">\(x_0=1\)</span>.</p>
-<p>Vi har <span class="math inline">\(f'(x) = \frac{1}{x}\)</span>.</p>
-<p>Den linære tilnærmingen av <span class="math inline">\(\log(x)\)</span> rundt <span class="math inline">\(x_0 = 1\)</span> blir altså</p>
-<p><span class="math display">\[
-\log(x) \approx x-1
-\]</span></p>
+<section id="oppgave" class="level3">
+<h3 class="anchored" data-anchor-id="oppgave">Oppgave:</h3>
+<p>Øv på å bruke reshape helt til du har forstått hvordan den fungerer.</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>reshape endrer bare hvordan dataene tolkes, ikke selve tallene. Dette gjør det mulig å gå sømløst mellom 2D-representasjon (for visualisering) og 1D-representasjon (for lineære ligningssystemer).</p>
 </section>
-<section id="andreordens-tilnærming" class="level3">
-<h3 class="anchored" data-anchor-id="andreordens-tilnærming">2. Andreordens tilnærming</h3>
-<p>Vi får bedre nøyaktighet hvis vi heller bruker et parabel. Det kan vises at den beste tilnærming av <span class="math inline">\(f(x)\)</span> med et andreordens polynom blir</p>
+<section id="b-vi-lager-matrisen-1-for-løkker" class="level3">
+<h3 class="anchored" data-anchor-id="b-vi-lager-matrisen-1-for-løkker">b) Vi lager matrisen 1: for-løkker</h3>
+<p>Utfordringen sammenlignet med 6_1 er å sette sammen ligningene</p>
 <p><span class="math display">\[
-f(x) \approx  f(x_0) + f'(x_0) (x-x_0) + \frac{1}{2}f''(x_0) (x-x_0)^2
+\frac{1}{h^2} \big( u_{i+1,j} + u_{i-1,j} \big) +
+\frac{1}{k^2} \big( u_{i,j+1} + u_{i,j-1} \big) -
+\left( \frac{2}{h^2} + \frac{2}{k^2} \right)
+u_{i,j} = f(ih,jk),
 \]</span></p>
-</section>
-<section id="eksempel-3" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-3">Eksempel 3</h3>
-<p>La oss fortsette med <span class="math inline">\(\log(x)\)</span>. Vi har <span class="math inline">\(f''(x) = -x^{-2}\)</span>, slik at <span class="math inline">\(f''(1)=-1\)</span>. Vi får altså:</p>
+<p>til et system</p>
 <p><span class="math display">\[
-\log(x) \approx (x-1) - \frac{1}{2}(x-1)^2
+L\vec{u} = \vec{F}
 \]</span></p>
+<p>ved hjelp av vektorisering. Vi skal se et smart triks i 1c) under, men vi kan få det til med en for-løkke også.</p>
+<p>La oss tenke på vektoriseringen <span class="math inline">\(u = (u_{1,1}, u_{2,1}, \ldots)\)</span>. Vi antar at dimensjonen på <span class="math inline">\(u\)</span> er <span class="math inline">\(m \times n\)</span>. Da ser vi at etter vektorisering blir</p>
+<p><span class="math display">\[
+u_{i,j} = u_{i + mj}
+\]</span></p>
+<p>Vi har altså</p>
+<p><span class="math display">\[
+\frac{1}{h^2} \big( u_{i+1 + mj} + u_{i-1+mj} \big) +
+\frac{1}{k^2} \big( u_{i+m(j+1)} + u_{i+m(j-1)} \big) -
+\left( \frac{2}{h^2} + \frac{2}{k^2} \right)
+u_{i+mj} = f(ih,jk),
+\]</span></p>
+<p>Som kan skrives om til</p>
+<p><span class="math display">\[
+\frac{1}{h^2} \big( u_{(i+mj)+1} + u_{(i+mj)-1} \big) +
+\frac{1}{k^2} \big( u_{(i+mj)+m)} + u_{(i+mj)-m)} \big) -
+\left( \frac{2}{h^2} + \frac{2}{k^2} \right)
+u_{i+mj} = f(ih,jk),
+\]</span></p>
+<p>Hvis vi skriver <span class="math inline">\(p=i+mj\)</span>, har vi</p>
+<p><span class="math display">\[
+\frac{1}{h^2} \big( u_{p+1} + u_{p-1} \big) +
+\frac{1}{k^2} \big( u_{(p+m)} + u_{(p-m)} \big) -
+\left( \frac{2}{h^2} + \frac{2}{k^2} \right)
+u_{p} = f(p),
+\]</span></p>
+<p>hvor vi får <span class="math inline">\(f(p)\)</span> gjennom vektorisering av <span class="math inline">\(f(ih,jk)\)</span>.</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="generell-tilnærming-orden-k" class="level3">
-<h3 class="anchored" data-anchor-id="generell-tilnærming-orden-k">3. Generell tilnærming (orden <span class="math inline">\(k\)</span>)</h3>
-<p>Vi kan fortsette med så mange deriverte som vi vil (forutsatt at de eksisterer). Det viser seg at den beste tilnærming er:</p>
+<section id="c-vi-lager-matrisen-2-kroneckerproduktet" class="level3">
+<h3 class="anchored" data-anchor-id="c-vi-lager-matrisen-2-kroneckerproduktet">c) Vi lager matrisen 2: Kroneckerproduktet</h3>
+<p>Det er ganske vrient å sette opp matrisen med for-løkker, men et nyttig triks er å bruke <em>Kroneckerproduktet</em> (https://en.wikipedia.org/wiki/Kronecker_product). Det er et slags produkt av matriser, skrevet som <span class="math inline">\(\otimes\)</span>, som er nyttig i forbindelse med vektorisering. Merk at produktet er helt forskjellig fra matriseproduktet du kan fra før.</p>
+<p>Her viser det seg at matrisen <span class="math inline">\(L\)</span> vi ønsker oss er lik</p>
 <p><span class="math display">\[
-\begin{align*}
-f(x) \approx &amp; f(x_0) + f'(x_0) (x-x_0) %+ \frac{1}{2}f''(x) (x-x_0)^2
-+ \ldots
-+ \frac{1}{k!} f^{(k)}(x_0) (x-x_0)^k \\
-% &amp;+ \frac{1}{(n+1)!} f^{(n+1)}(a) (x-x_0)^{n+1}
-\end{align*}
+L = L_m \otimes I_n + I_m \otimes L_n,
 \]</span></p>
-<p>Den kalles for <em>Taylor utviklingen</em> av orden <span class="math inline">\(k\)</span>.</p>
-</section>
-<section id="eksempel-4" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-4">Eksempel 4</h3>
-<p>Regn ut Taylor tilnærming av orden <span class="math inline">\(k\)</span> til <span class="math inline">\(f=\log(x)\)</span>, rundt <span class="math inline">\(x_0 = 1\)</span>.</p>
-<p>Vi har allerede beregnet <span class="math inline">\(f'(x)=x^{-1}\)</span> og <span class="math inline">\(f''(x) = -x^{-2}\)</span>. Den tredje deriverte er da <span class="math inline">\(f^{(3)}(x) = 2x^{-3}\)</span>, den fjerde er <span class="math inline">\(f^{(4)}(x)=2\cdot -3x^{-4}\)</span>, og generelt er <span class="math inline">\(f^{(k)}(x) = (-1)^{k-1} (k-1)! x^{-k}\)</span>. Vi har</p>
-<p><span class="math display">\[
-\log(x) \approx (x-1) - \frac{1}{2} (x-1)^2 + \ldots + (-1)^{k-1} \frac{(k-1)!}{k!} (x-1)^2
-\]</span></p>
-<p>Siden <span class="math inline">\(\frac{(k-1)!}{k!} = \frac{1}{k}\)</span> har vi</p>
-<p><span class="math display">\[
-\log(x) \approx (x-1) - \frac{1}{2} (x-1)^2 + \ldots + (-1)^{k-1} \frac{1}{k} (x-1)^2
-\]</span></p>
-</section>
-<section id="eksempel-5" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-5">Eksempel 5</h3>
-<p>Bruk den tredje ordens Taylor utviklingen rundt <span class="math inline">\(x_0=1\)</span> til å finne an approksimasjon til <span class="math inline">\(\sqrt{1.1}\)</span>.</p>
-<p>Vi tar altså <span class="math inline">\(f(x)=\sqrt{x}\)</span>, slik at</p>
-<p><span class="math display">\[
-f'(x) = \frac{1}{2}x^{-\frac{1}{2}}, \quad
-f''(x) = -\frac{1}{4}x^{-\frac{3}{2}}, \quad
-f^{(3)}(x) = \frac{3}{8}x^{-\frac{5}{2}}
-\]</span></p>
-<p>Ved å sette inn <span class="math inline">\(x=1\)</span> får vi <span class="math display">\[
-f'(1) = \frac{1}{2}, \quad
-f''(1) = -\frac{1}{4}, \quad
-f^{(3)}(1) = \frac{3}{8}.
-\]</span></p>
-<p>Siden <span class="math inline">\(f(1) = \sqrt{1} = 1\)</span>, får vi</p>
-<p><span class="math display">\[
-\begin{align*}
-f(x+1) &amp;\approx f(1) + \frac{1}{2}x - \frac{1}{4}\frac{1}{2!}x^2 + \frac{3}{8}\frac{1}{3!}x^3 \\
-&amp;= 1 + \frac{1}{2}x - \frac{1}{8} x^2 + \frac{1}{16}x^3
-\end{align*}
-\]</span></p>
-<p>La oss bruke det til å finne en tilnærming til <span class="math inline">\(\sqrt{1.1}\)</span>. Vi har:</p>
-<p><span class="math display">\[
-\sqrt{1.1}=f(0.1 + 1) \approx 1 + \frac{1}{2} 0.1 - \frac{1}{8} 0.01 + \frac{1}{16} 0.001 = 1 + 0.05 - 0.00125 + 0.0000625 = 1.0488125
-\]</span></p>
-<p>Den ekte verdien er <span class="math inline">\(\sqrt{1.1} = 1.04880884\ldots\)</span></p>
-</section>
-<section id="er-tilnærmingen-bra" class="level3">
-<h3 class="anchored" data-anchor-id="er-tilnærmingen-bra">Er tilnærmingen bra?</h3>
-<p>Vi skal undersøke tilnærmingen til logaritmen i øvingen. I den neste seksjonen vil vi vise en presis måte å estimere feilen.</p>
-</section>
-</section>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<section id="restledd-1" class="level1">
-<h1>Restledd</h1>
-<p>Her fokuserer vi på restleddet i Taylors teorem, noe som også gjøre teoremet presist og forklarer hvorfor det fungerer.</p>
-<p>Hovedfokuset vårt er på anvendelser med feilestimering.</p>
-<section id="bakgrunn-middelverdisetningen" class="level3">
-<h3 class="anchored" data-anchor-id="bakgrunn-middelverdisetningen">1. Bakgrunn: Middelverdisetningen</h3>
-<p>Den enkleste versjonen av middelverdisteningen sier at det finnes et tall <span class="math inline">\(a\in(x_0,x)\)</span> slik at</p>
-<p><span class="math display">\[
-f(x) = f(x_0) + f'(a)(x-x_0)
-\]</span></p>
-<p>Dette er da den enkleste mulig form av Taylors teorem. Litt forenklet får vi Taylors teorem ved å anvende middelverdisetningen en gang til på <span class="math inline">\(f'(x)\)</span>, og så på <span class="math inline">\(f''(x)\)</span> og så videre.</p>
-<p>For eksempel har vi at <span class="math display">\[
-f'(a) = f'(x_0) + f''(b)(a-x_0)
-\]</span></p>
-<p>Setter vi dette inn i forrige uttrykk får vi at</p>
-<p><span class="math display">\[
-\begin{align}
-f(x) &amp;= f(x_0) + \big(f'(x_0) + f''(b)(a-x_0)\big)(x-x_0) \\
-&amp;= f(x_0) + f'(x_0)(x-x_0) + f''(b)(a-x_0)(x-x_0)
-\end{align}
-\]</span></p>
-<p>Det er ikke helt den formuleringen vi ønsker, men for å komme skal vi se på en alternativ versjon av middelverdisetningen.</p>
-</section>
-<section id="eksempel-1" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-1">Eksempel 1</h3>
-<p>Men hva sier egentlig teoremet?</p>
-<p>Vi ser på funksjonen</p>
-<p><span class="math display">\[
-f(x) = x + (x-1)(x-2)(x-3), \quad 1\leq x\leq 3
-\]</span></p>
-<p>Middelverdisetningen sier at det finnes et punkt <span class="math inline">\(a\)</span> mellom 1 og 3, slik at</p>
-<p><span class="math display">\[
-f(3) = f(1) + f'(a)(3-1),
-\]</span></p>
-<p>Det kan vi skrive om til</p>
-<p><span class="math display">\[
-\frac{f(3)-f(1)}{3-1} = f'(a),
-\]</span></p>
-<p>hvor venstresiden er gjennomsnittlig veksthastighet fra 1 til 3. Setningen sier altså at det finnes minst en verdi <span class="math inline">\(a\)</span> hvor veksthastigheten <span class="math inline">\(f'(a)\)</span> er nøyaktig lik gjennomsnittsveksthastigheten over hele intervallet.</p>
-<p>Vi beregner</p>
-<p><span class="math display">\[
-f'(x) = 1 + (x-1)(x-2) + (x-1)(x-3) + (x-2)(x-3) = 1 + (x^2 - 3x + 2) + (x^2 - 4x + 3) + (x^2 - 5x + 6) = 3x^2 -12x + 12
-\]</span></p>
-<p>Nå er <span class="math inline">\(f(1)=1, f(3)=3\)</span>, slik at</p>
-<p><span class="math display">\[
-\frac{f(3)-f(1)}{3-1} = 1.
-\]</span></p>
-<p>Vi kan løse <span class="math inline">\(f'(a)=1\)</span>, og finner to løsninger</p>
-<p><span class="math display">\[
-a = \frac{12 \pm \sqrt{(-12)^2 - 4\cdot 3\cdot 11}}{2\cdot 3} = 2 \pm \frac{\sqrt{12}}{6} = 2 \pm \frac{\sqrt{3}}{3}
-\]</span></p>
+<p>hvor <span class="math inline">\(L_m, L_n\)</span> tilsvarer matrisene for henholdsvis <span class="math inline">\(u_{xx}, u_{yy}\)</span> (fra de en-dimensjonale tilnærmingene til poissonligningen), og <span class="math inline">\(I_m, I_n\)</span> er idetitetsmatrisene med størrelse <span class="math inline">\(m,n\)</span>.</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="cauchys-middelverdisetning" class="level3">
-<h3 class="anchored" data-anchor-id="cauchys-middelverdisetning">Cauchys middelverdisetning</h3>
-<p>[ikke pensum, men tas med for opplysningens skyld]</p>
-<p>Det finnes et tall <span class="math inline">\(a\in[x_0,x]\)</span> slik at</p>
-<p><span class="math display">\[
-\frac{f(x)-f(x_0)}{g(x)-g(x_0)} = \frac{f'(a)}{g'(a)}
-\]</span></p>
-<p>Dette kan brukes til å bevise l’Hopitals regel, en gammel favoritt fra videregående kalkulus. Men her kan vi få et nøyaktig uttrykk for restleddet ved å sette funksjonen i telleren til å være restleddet fra en Taylor-tilnærming med orden <span class="math inline">\(k-1\)</span>, altså</p>
-<p><span class="math display">\[
-R_k(x) = f(x) - \left( f(x_0) + f'(x_0) (x-x_0) + \ldots + \frac{1}{k!} f^{(k-1)}(x_0) (x-x_0)^{k-1} \right)
-\]</span></p>
-<p>og funksjonen i nevneren</p>
-<p><span class="math display">\[
-g(x)=g_k(x)=\frac{(x-x_0)^k}{k!}.
-\]</span></p>
-<p>Cauchys middelverdisetning gir</p>
-<p><span class="math display">\[
-\frac{R_k(x)}{g_k(x)} =
-\frac{R_k(x)-R_k(x_0)}{g_k(x)-g_k(x_0)} = \frac{R'_k(a_1)}{g_k'(a_1)} = \frac{R'_k(a_1)-R'_k(x_0)}{g'_k(a_1)-g'_k(x_0)}
-= \frac{R''_k(a_2)}{g''_k(a_2)},
-\]</span></p>
-<p>hvor vi har brukt at både <span class="math inline">\(R_k(x_0), R'_k(x_0), \ldots\)</span>, <span class="math inline">\(g_k(x_0),g'_k(x_0),\ldots\)</span> og alle første <span class="math inline">\(k-1\)</span> deriverte er null ved <span class="math inline">\(x_0\)</span>. Ved å fortsette slik <span class="math inline">\(k\)</span> ganger, får vi</p>
-<p><span class="math display">\[
-\frac{R_k(x)}{g_k(x)} = \frac{R_k^{(k)}(a_k)}{g^{(k)}_k(a_k)} = f^{(k)}(a_k),
-\]</span></p>
-<p>siden <span class="math inline">\(R_k^{(k)}(x) = f^{(k)}(x)\)</span> og <span class="math inline">\(g^{(k)}_k(x) = 1\)</span>, slik at</p>
-<p><span class="math display">\[
-R_k(x) = \frac{(x-x_0)^k}{k!} f^{(k)}(a_k),
-\]</span></p>
-<p>hvor <span class="math inline">\(a_k\)</span> er en konstant mellom <span class="math inline">\(x_0\)</span> og <span class="math inline">\(x\)</span>. Siden vi ikke er interessert i de andre konstantene <span class="math inline">\(a_1, a_2, \ldots\)</span> døper vi om <span class="math inline">\(a_k\)</span> til <span class="math inline">\(a\)</span>. Vi har bevist vårt feilestimat.</p>
-</section>
-<section id="feilestimering" class="level3">
-<h3 class="anchored" data-anchor-id="feilestimering">2. Feilestimering</h3>
-<p>Restleddet i en Taylor-tilnærming med <span class="math inline">\(k-1\)</span> ledd er altså <span class="math display">\[
-R_k(x) = \frac{(x-x_0)^k}{k!} f^{(k)}(a)
-\]</span></p>
-<p>Det er oftest ikke mulig å finneut hva som <span class="math inline">\(a\)</span> faktisk er. I praksis vil vi heller ofte si at</p>
-<p><span class="math display">\[
-R_k(x) \leq \frac{(x-x_0)^k}{k!} \max_{a\in(x_0,x)} f^{(k)}(a)
-\]</span></p>
-</section>
-<section id="eksempel-2-1" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-2-1">Eksempel 2</h3>
-<p>Finn et estimat av feilen i tilnærmingen</p>
-<p><span class="math display">\[
-\log(2) \approx (2-1) - \frac{1}{2}(2-1)^2 = \frac{1}{2}.
-\]</span></p>
-<p>La <span class="math inline">\(f(x)=\log(x)\)</span>. Vi har <span class="math inline">\(f'(x)=\frac{1}{x}=x^{-1}\)</span>, og <span class="math inline">\(f''(x)=-x^{-2}\)</span>, slik at <span class="math inline">\(f^{(3)}(x)=2x^{-3}\)</span>. Altså</p>
-<p><span class="math display">\[
-R_3(x) = \frac{(x-1)^3}{3!} 2 a^{-3} = \frac{(x-1)^3}{3a^3},\quad 1&lt;a&lt;x.
-\]</span></p>
-<p>For <span class="math inline">\(x=2\)</span>, har vi</p>
-<p><span class="math display">\[
-R_3(2) = \frac{1}{3a^3}, \quad 1&lt;a&lt;2.
-\]</span></p>
-<p>Vi vet ikke hva <span class="math inline">\(a\)</span> er, men vi kan iallfall forsikre oss at feilen ikke blir større en maksverdien til <span class="math inline">\(R_3(2)\)</span>, betraktet som en funksjon av <span class="math inline">\(a\)</span>. Siden den er en avtagende funksjon for positive <span class="math inline">\(a\)</span> er den definitivt mindre enn verdien med <span class="math inline">\(a=1\)</span>, altså</p>
-<p><span class="math display">\[
-R_3(2) &lt; \frac{1}{3}.
-\]</span></p>
-<p>Den ekte feilen er</p>
-<p><span class="math display">\[
-R_3(2) = \log(2) - \frac{1}{2} = 0.193.
-\]</span></p>
-</section>
-<section id="eksempel-3-1" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-3-1">Eksempel 3</h3>
-<p>Hvor mange ledd trenger vi i Taylor-tilnærmingen til <span class="math inline">\(\sin(x)\)</span> rundt <span class="math inline">\(x_0=0\)</span> for å finne <span class="math inline">\(\sin(1)\)</span> til 4 desimalers nøyaktighet?</p>
-<p>Først finner vi Taylor utviklingen. Vi har <span class="math inline">\(f'(x)=-\cos(x)\)</span>, <span class="math inline">\(f''(x)=-\sin(x)\)</span>, <span class="math inline">\(f^{(3)}(x)=-\cos(x)\)</span>, osv. i samme mønster. Vi kan uttrykke det matematisk med:</p>
-<p><span class="math display">\[
-f^{(2k)}=(-1)^k \sin(x), \quad f^{(2k+1)}=(-1)^k \cos(x),
-\]</span></p>
-<p>siden alle partall er av formen <span class="math inline">\(n=2k\)</span>, og alle oddetall <span class="math inline">\(n=2k+1\)</span>.</p>
-<p>Siden <span class="math inline">\(\sin(0)=0\)</span> og <span class="math inline">\(\cos(0)=1\)</span> får vi</p>
-<p><span class="math display">\[
-f^{(2k)}(0)=0, \quad f^{(2k+1)}(0)=(-1)^k
-\]</span></p>
-<p>Alle partallsledd forsvinner altså, og Taylor-tilnærmingen blir</p>
-<p><span class="math display">\[
-\sin(x) = x - \frac{1}{3!}x^3 + \ldots + \frac{1}{(2k-1)!} (-1)^{k-1} x^{2k-1} + R_{2k+1},
-\]</span></p>
-<p>hvor uttrykket for restleddet er</p>
-<p><span class="math display">\[
-R_{2k+1} = \frac{1}{(2k+1)!} (-1)^k \cos(a), \quad 0\leq a\leq 1
-\]</span></p>
-<p>Siden <span class="math inline">\(0&lt;\cos(a)\leq 1\)</span> på intervallet vet vi</p>
-<p><span class="math display">\[
-|R_{2k+1}| \leq \frac{1}{(2k+1)!}
-\]</span></p>
-<p>For at <span class="math inline">\(|R_{2k+1}|&lt;10^{-4}\)</span> trenger vi dermed at <span class="math inline">\((2k+1)! &gt; 10^4\)</span>. Det får vi først når <span class="math inline">\(k=4\)</span>. Dvs vi får 4 desimalers nøyaktighet med</p>
-<p><span class="math display">\[
-\sin(1) \approx 1 - \frac{1}{3!} + \frac{1}{5!} - \frac{1}{7!} = 1 - \frac{1}{3} + \frac{1}{120} - \frac{1}{5040} =
-0.8415
-\]</span></p>
+<p>Kroneckerformen gjør det lett å bygge 2D-operatoren fra to 1D-operatorer, og den avslører samtidig at matrisen er svært sparsom (få ikke-null elementer). Dette blir viktig når vi skal løse store systemer effektivt.</p>
 </section>
 </section>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<section id="taylors-teorem-med-flere-variabler" class="level1">
-<h1>Taylors teorem med flere variabler</h1>
-<p>Vi fokuserer på funksjoner av type <span class="math inline">\(\mathbb{R}^n\rightarrow\mathbb{R}\)</span>, og ser spesielt på <span class="math inline">\(n=2\)</span>.</p>
-<p>Vi skal altså finne tilnærminger</p>
-<p><span class="math display">\[
-f(x,y) = P_k(x,y) + R_{k+1}(x,y)
-\]</span></p>
-<p>hvor <span class="math inline">\(P_k(x,y)\)</span> er et polynom. Vi fokuserer bare på <span class="math inline">\(k=1\)</span> (linearisering) og <span class="math inline">\(k=2\)</span>.</p>
-<section id="linearisering" class="level3">
-<h3 class="anchored" data-anchor-id="linearisering">Linearisering</h3>
-<p>Et lineært polynom i 2 variabler tar formen</p>
-<p><span class="math display">\[
-P_1(x,y) = ax + by + c = c + \vec{a}\cdot\vec{x}, \quad
-\vec{a}=\begin{pmatrix}
-a \\
-b
-\end{pmatrix}^T, \quad
-\vec{x}=\begin{pmatrix}
-x \\
-y
-\end{pmatrix},
-\]</span></p>
-<p>Første ordens Taylor-tilnærming, <span class="math inline">\(\textit{lineariseringen}\)</span>, er</p>
-<p><span class="math display">\[
-f(\vec{x}) = f(\vec{x}_0) + \Big[\frac{Df}{D\vec{x}}(\vec{x_0})\Big](\vec{x}-\vec{x_0}) + R_2
-\]</span></p>
-</section>
-<section id="eksempel-1-1" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-1-1">Eksempel 1</h3>
-<p>La</p>
-<p><span class="math display">\[
-f(x,y) = \sqrt{9-x^2-y^2} = (9-x^2-y^2)^{\frac{1}{2}}
-\]</span></p>
-<p>Finn</p>
+<section id="dirichletbetingelser" class="level2">
+<h2 class="anchored" data-anchor-id="dirichletbetingelser">2. Dirichletbetingelser</h2>
+<p>Randbetingelsene vi velger påvirker både matrise <span class="math inline">\(L\)</span> og vektoren <span class="math inline">\(\vec{F}\)</span>, slik vi så for én dimensjon i rom.</p>
+<p>Vi begynner med dirichletbetingelser, hvor <span class="math inline">\(u\)</span> oppgis på randen.</p>
+<p>Siden vi jobber med <span class="math inline">\(0&lt;x&lt;1\)</span> og <span class="math inline">\(0&lt;y&lt;1\)</span>, har randen fire deler:</p>
 <ol type="1">
-<li>linearisering rundt <span class="math inline">\((0,0)\)</span></li>
-<li>linearisering rundt <span class="math inline">\((2,2)\)</span></li>
+<li><span class="math inline">\(y=0\)</span></li>
 </ol>
-<p>I vårt eksempel er <span class="math display">\[
-\frac{\partial f}{\partial x} = -x (9-x^2-y^2)^{-\frac{1}{2}}, \quad
-\frac{\partial f}{\partial y} = -y (9-x^2-y^2)^{-\frac{1}{2}}
-\]</span></p>
-<ol type="1">
-<li>Vi finner en lineær tilnærming rundt <span class="math inline">\(x=0,y=0\)</span>. Der er <span class="math inline">\(\frac{Df}{D\vec{x}} = \vec{0}\)</span>, slik at tilnærmingen blir konstant:</li>
-</ol>
-<p><span class="math display">\[
-f(x,y) \approx f(0,0) = 3
-\]</span></p>
+<p>Her setter vi <span class="math inline">\(u(x,0) = f_1(x)\)</span>.</p>
 <ol start="2" type="1">
-<li>Tar vi tilnærmingen rundt <span class="math inline">\(x=y=2\)</span> istedet, får vi <span class="math inline">\(\frac{Df}{D\vec{x}} = (-2, -2)\)</span>, og</li>
+<li><span class="math inline">\(y=1\)</span></li>
 </ol>
+<p>Her setter vi <span class="math inline">\(u(x,1) = f_2(x)\)</span>.</p>
+<ol start="3" type="1">
+<li><span class="math inline">\(x=0\)</span></li>
+</ol>
+<p>Her setter vi <span class="math inline">\(u(0,y) = f_3(y)\)</span>.</p>
+<ol start="4" type="1">
+<li><span class="math inline">\(x=1\)</span></li>
+</ol>
+<p>Her setter vi <span class="math inline">\(u(1,y) = f_4(y)\)</span>.</p>
+<p>Alle funksjonene <span class="math inline">\(f_i\)</span> antas oppgitt i problemet. Husk at vi ønsker å løse et lineært system med ligninger</p>
 <p><span class="math display">\[
-f(x,y) \approx f(2,2) + (-2, -2)\begin{pmatrix}
-x-2 \\
-y-2
-\end{pmatrix}
-= 1 + -2(x-2) + -2(y-2) = 9 - 2x - 2y
+\frac{1}{h^2} \big( u_{i+1,j} + u_{i-1,j} \big) +
+\frac{1}{k^2} \big( u_{i,j+1} + u_{i,j-1} \big) -
+\left( \frac{2}{h^2} + \frac{2}{k^2} \right)
+u_{n,m} = f(ih,jk),
 \]</span></p>
+<p>Fremgangsmåte er som for én dimensjon. Alle <span class="math inline">\(u_{i,j}\)</span> i disse ligningene som havner på randen sendes over til den høyre siden. For eksempel, hvis vi tar <span class="math inline">\(m=n=1\)</span>, har vi</p>
+<p><span class="math display">\[
+\frac{1}{h^2} u_{2,1} + \frac{1}{k^2} u_{1,2}  - \left( \frac{2}{h^2} + \frac{2}{k^2} \right) u_{1,1} = f(h,k) - \frac{1}{h^2} u_{0,1} - \frac{1}{k^2} u_{1,0}
+\]</span></p>
+<p>Vi kan da sette inn <span class="math inline">\(u_{0,1} = u(0,k) = f_3(k)\)</span> og <span class="math inline">\(u_{1,0} = u(h,0) = f_1(h)\)</span> og få</p>
+<p><span class="math display">\[
+\frac{1}{h^2} u_{2,1} + \frac{1}{k^2} u_{1,2}  - \left( \frac{2}{h^2} + \frac{2}{k^2} \right) u_{1,1} = f(h,k) - \frac{1}{h^2} f_3(k) - \frac{1}{k^2} f_1(h)
+\]</span></p>
+<p>Konklusjonen er at vi ikke trenger å gjøre noe med matrisa <span class="math inline">\(L\)</span>, men at vi legger til ekstraleddene som kommer fra <span class="math inline">\(f_i\)</span> på høyresiden.</p>
+<section id="eksempel-1." class="level3">
+<h3 class="anchored" data-anchor-id="eksempel-1.">Eksempel 1.</h3>
+<p>Her er koden som løser randverdiproblem med <span class="math inline">\(f(x)=0\)</span> og <span class="math inline">\(u(x,0)=u(0,y)=u(1,y)=0\)</span>, <span class="math inline">\(u(x,1)=\sin(\pi x)\)</span>.</p>
+<p>Her kan vi sammenligne med en eksakt løsningen (som kan finnes med separasjon av variable) lik</p>
+<p><span class="math display">\[
+u(x,y) = \frac{\sin(\pi x)\sinh(\pi y)}{\sinh(\pi)}
+\]</span></p>
+<p>Koden under bruker Kroneckerproduktet til å legge til randbetingelsene på riktig plass.</p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="andreordens" class="level3">
-<h3 class="anchored" data-anchor-id="andreordens">Andreordens</h3>
-<p>Et andregradens polynom i to dimensjoner tar formen</p>
-<p><span class="math display">\[
-P_2(x,y) = \vec{x}^T A \vec{x} + \vec{b}\cdot\vec{x} + c,
-\]</span></p>
-<p>for en gitt matrise <span class="math inline">\(A\)</span>, vektor <span class="math inline">\(b\)</span> og skalar <span class="math inline">\(c\)</span>.</p>
-<p>Andreordens Taylor-utvikling gir</p>
-<p><span class="math display">\[
-f(\vec{x}) = f(\vec{x}_0) + \Big[\frac{Df}{D\vec{x}}(\vec{x}_0)\Big](\vec{x}-\vec{x_0}) + \frac{1}{2}(\vec{x}-\vec{x}_0)^T \Big[\frac{D^2f}{D\vec{x}^2}(\vec{x_0})\Big] (\vec{x}-\vec{x_0})  + R_3,
-\]</span></p>
-<p>der <span class="math inline">\(\frac{Df}{D\vec{x}}\)</span> er en vektor, og <span class="math inline">\(\frac{D^2f}{D\vec{x}^2}\)</span> er en matrise (Hessematrisen).</p>
-</section>
-<section id="eksempel-2-2" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-2-2">Eksempel 2</h3>
-<p>Vi fortsetter med samme funksjon <span class="math inline">\(f(x,y) = \sqrt{9-x^2-y^2}\)</span> som i eksempel 1.</p>
-<p>Vi har <span class="math display">\[
-\begin{align}
-\frac{\partial^2 f}{\partial x^2} &amp;= -(9-x^2-y^2)^{-\frac{1}{2}} - x^2 (9-x^2-y^2)^{-\frac{3}{2}} \\
-\frac{\partial^2 f}{\partial x\partial y} &amp;= -xy (9-x^2-y^2)^{-\frac{3}{2}} \\
-\frac{\partial^2 f}{\partial y^2} &amp;= -(9-x^2-y^2)^{-\frac{1}{2}} - y^2 (9-x^2-y^2)^{-\frac{3}{2}}
-\end{align}
-\]</span></p>
-<p>Da er <span class="math display">\[
-\frac{Df}{D\vec{x}}(0,0) = \begin{pmatrix}
--9^{\frac{-1}{2}} &amp; 0 \\
-0  &amp; -9^{\frac{-1}{2}}
-\end{pmatrix}
-=
-\begin{pmatrix}
--\frac{1}{3} &amp; 0 \\
-0 &amp; -\frac{1}{3}
-\end{pmatrix}
-\]</span></p>
-<p>Andreordens tilnærmingen rundt <span class="math inline">\(x=0, y=0\)</span> blir da</p>
-<p><span class="math display">\[
-f(x,y) \approx f(0,0) + (x,y)\begin{pmatrix}
--\frac{1}{3} &amp; 0 \\
-0 &amp; -\frac{1}{3}
-\end{pmatrix}
-\begin{pmatrix}
-x \\
-y
-\end{pmatrix}
-= 3 - \frac{1}{3}x^2 - \frac{1}{3}y^2
-\]</span></p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Det er viktig at vektoriseringen av <span class="math inline">\(f(x,y)\)</span> skjer i samme rekkefølge som vi brukte da vi bygget 2D-Laplace-operatoren med Kroneckerprodukt. Hvis ikke kan vi få riktige tall, men plassert på feil steder i vektoren.</p>
 </section>
-<section id="kritiske-punkter-kommentar" class="level3">
-<h3 class="anchored" data-anchor-id="kritiske-punkter-kommentar">Kritiske punkter (kommentar)</h3>
-<p>Når ser vi hvorfor kritiske punkter er slik som vi har beskrevet tidligere! I et kritisk punkt er <span class="math inline">\(\frac{Df}{D\vec{x}} = \vec{0}\)</span>, slik at</p>
+<section id="løsning" class="level3">
+<h3 class="anchored" data-anchor-id="løsning">Løsning</h3>
+<p>Nå er vi klar til å løse systemet</p>
 <p><span class="math display">\[
-f(\vec{x}) = f(\vec{x}_0) + \frac{1}{2}(\vec{x}-\vec{x}_0)^T \Big[\frac{D^2f}{D\vec{x}^2}(\vec{x_0})\Big] (\vec{x}-\vec{x_0})  + R_3,
-\]</span> funksjonen kan attså tilnærmes av en av de tre variantene fra forrige uke.</p>
-</section>
-<section id="restledd-og-nøyaktighet" class="level3">
-<h3 class="anchored" data-anchor-id="restledd-og-nøyaktighet">Restledd og nøyaktighet</h3>
-<p>[ikke pensum]</p>
-<p>La oss skrive den generelle formen slik:</p>
-<p><span class="math display">\[
-f(\vec{x})=f(\vec{x_0}) + \Big[\frac{Df}{D\vec{x}}(\vec{x}_0)\Big](\vec{x}-\vec{x}_0) + \ldots
-+ \frac{1}{n!}\Big[\frac{D^n f}{D\vec{x}^n}(\vec{x}_0)\Big] (\vec{x}-\vec{x}_0,\ldots,\vec{x}-\vec{x}_0)
-+ \frac{1}{(n+1)!}\Big[\frac{D^{n+1} f}{D\vec{x}^{n+1}}(\vec{a})\Big] (\vec{x}-\vec{x}_0,\ldots,\vec{x}-\vec{x}_0)
+L\vec{u} = \vec{F}
 \]</span></p>
-<p>Her er <span class="math inline">\(\vec{a}\)</span> en vektor som er minst like nær <span class="math inline">\(\vec{x}_0\)</span> som <span class="math inline">\(\vec{x}\)</span>.</p>
-<p>Vi forstår den deriverte <span class="math inline">\(D^n f (x;h_1,\ldots,h_n)\)</span> som en funksjon som tar en posisjon <span class="math inline">\(\vec{x}\)</span> og <span class="math inline">\(n\)</span> retninger <span class="math inline">\(h_1,\ldots,h_n\)</span>. I Taylors teorem er hver retning <span class="math inline">\(\vec{x}-\vec{x}_0\)</span>.</p>
-</section>
-<section id="eksempel-3-restledd-i-lineærisering" class="level3">
-<h3 class="anchored" data-anchor-id="eksempel-3-restledd-i-lineærisering">Eksempel 3: restledd i lineærisering</h3>
-<p>La oss se ta en titt på lineærisering av funksjonen <span class="math inline">\(f(x,y) = \sqrt{9-x^2-y^2}\)</span> rundt origoen. Restleddet er altså</p>
-<p><span class="math display">\[
-R_2 = (x,y)
-\begin{pmatrix}
--(9-a^2-b^2)^{\frac{-1}{2}} - a^2 (9-a^2-b^2)^{\frac{-3}{2}} &amp; -ab (9-a^2-b^2)^{\frac{-3}{2}} \\
--ab (9-a^2-b^2)^{\frac{-3}{2}} &amp; -(9-a^2-b^2)^{\frac{-1}{2}} - b^2 (9-a^2-b^2)^{\frac{-3}{2}}
-\end{pmatrix}
-\begin{pmatrix}
-x \\
-y
-\end{pmatrix}
-\]</span></p>
-<p>Ikke spesielt pent!</p>
-</section>
-</section>
-</div>
-</div>
-</div>
+<p>For å plotte resultatet bruker vi reshape til å få tilbake <span class="math inline">\(U(x_i,y_j)\)</span> som en array.</p>
+<p><strong>Obs</strong>: koden over bruker <span class="math inline">\((x_i,y_j)\)</span>, ikke <span class="math inline">\((x_j,y_i)\)</span>, se diskusjonen i 6_1, “Advarsel: arrayer, rutenett og meshgrid”.</p>
+<div id="qpyodide-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Den kan sammenlignes med den eksakte løsningen:</p>
+<div id="qpyodide-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Ved å sammenligne den numeriske løsningen med den analytiske løsningen punkt for punkt, kan vi visualisere feilen som en egen flate. Dette gir et klart bilde av hvor i domenet diskretiseringen gir størst avvik.</p>
+<div id="qpyodide-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Figuren under oppsummerer hele den numeriske arbeidsflyten i 2D: fra den kontinuerlige differensialligningen, via diskretisering og lineært system, til numerisk løsning og visualisering.</p>
+<div id="qpyodide-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
