@@ -24,6 +24,11 @@ website:
           - pages/page6.qmd
           - pages/page7.qmd
           - pages/page8.qmd
+          - pages/page9.qmd
+          - pages/page10.qmd
+          - pages/page11.qmd
+          - pages/page12.qmd
+          - pages/page13.qmd
 
 format:
   html:
