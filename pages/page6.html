@@ -287,7 +287,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# data\nx = np.linspace(-1, 1, 256)\ny = np.linspace(-1, 1, 256)\nX, Y = np.meshgrid(x, y)\nZ = np.sin(np.pi * Y)\n\n# ONE figure, ONE axes, controlled size\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(6, 4)\n)\n\nax.plot_surface(X, Y, Z)\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"z\")\n\nplt.show()","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# data\nx = np.linspace(-1, 1, 256)\ny = np.linspace(-1, 1, 256)\nX, Y = np.meshgrid(x, y)\n\n# function\nZ = np.sin(np.pi * (X + Y))\n\n# ONE figure, ONE 3D axes\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(6, 4)\n)\n\nax.plot_surface(X, Y, Z)\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"z\")\n\nplt.show()","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.animation as animation\nfrom IPython.display import HTML\n\nplt.close(\"all\")\n\n# vi lager verdiene av x og t som vi skal bruke\nx = np.arange(0, 2*np.pi, 0.01)\nt = np.arange(0, 5, 0.05)\n\n# vi lager rutenettet\nX, T = np.meshgrid(x, t)\n\n# vi regner ut funksjonen på rutenettet\nu = np.sin(X + T)\n\n# vi lager én figur (ingen ekstra vinduer)\nfig, ax = plt.subplots(figsize=(6, 4))\n\n# vi setter faste aksegrenser slik at grafen ikke skalerer seg selv\nax.set_xlim(0, 2*np.pi)\nax.set_ylim(-1.1, 1.1)\n\n# initialplott, for tid t = 0\nline, = ax.plot(x, u[0, :], color=\"blue\")\n\n# funksjon som oppdaterer grafen for hvert tidssteg\ndef animate(i):\n    line.set_ydata(u[i, :])\n    return line,\n\n# vi lager animasjonen\n# interval bestemmer hvor fort det vises\n# frames angir hvor mange tider t_i som inngår\nani = animation.FuncAnimation(\n    fig,\n    animate,\n    frames=t.size,\n    interval=20,\n    blit=True\n)\n\n# vi viser animasjonen i Quarto / nettleser\nHTML(ani.to_jshtml())\nplt.show()","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# data\nx = np.linspace(-1, 1, 256)\ny = np.linspace(-1, 1, 256)\nX, Y = np.meshgrid(x, y)\nZ = np.sin(np.pi * Y)\n\n# ONE figure, ONE axes, controlled size\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(6, 4)\n)\n\nax.plot_surface(X, Y, Z)\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"z\")\n\nplt.show()","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\n\nplt.close(\"all\")\n\n# data\nx = np.linspace(-1, 1, 256)\ny = np.linspace(-1, 1, 256)\nX, Y = np.meshgrid(x, y)\n\n# function\nZ = np.sin(np.pi * (X + Y))\n\n# ONE figure, ONE 3D axes\nfig, ax = plt.subplots(\n    subplot_kw={\"projection\": \"3d\"},\n    figsize=(6, 4)\n)\n\nax.plot_surface(X, Y, Z)\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nax.set_zlabel(\"f\")\n\nax.quiver([0,0,0],[0,0,0],[-1,-1,-1],[1,1,0],[-1,1,0],[0,0,2], color='black')\nax.text(1,-1,-1,\"p\")\nax.text(1,1,-1,\"q\")\nax.text(0,0,1,\"g\")\n\nplt.show()","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.animation as animation\nfrom IPython.display import HTML\n\nplt.close(\"all\")\n\n# vi lager verdiene av x og t som vi skal bruke\nx = np.arange(0, 2*np.pi, 0.01)\nt = np.arange(0, 5, 0.05)\n\n# vi lager rutenettet\nX, T = np.meshgrid(x, t)\n\n# vi regner ut funksjonen på rutenettet\nu = np.sin(X + T)\n\n# vi lager én figur (ingen ekstra vinduer)\nfig, ax = plt.subplots(figsize=(6, 4))\n\n# vi setter faste aksegrenser slik at grafen ikke skalerer seg selv\nax.set_xlim(0, 2*np.pi)\nax.set_ylim(-1.1, 1.1)\n\n# initialplott, for tid t = 0\nline, = ax.plot(x, u[0, :], color=\"blue\")\ntext = ax.text(1.7*np.pi, 0.95, 't = 0')\n# funksjon som oppdaterer grafen for hvert tidssteg\ndef animate(i):\n    line.set_ydata(u[i, :])\n    tidspunkt = t[i]\n    text.set_text(f't = {tidspunkt:1.2f}')\n    return line,\n\n# vi lager animasjonen\n# interval bestemmer hvor fort det vises\n# frames angir hvor mange tider t_i som inngår\nani = animation.FuncAnimation(\n    fig,\n    animate,\n    frames=t.size,\n    interval=20,\n    blit=False    # Med blit-ing fungerer text elementene ikke\n)\n\n# vi viser animasjonen i Quarto / nettleser\nHTML(ani.to_jshtml())\nplt.show()","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 /* Set variable for backend 
 for Groq Server: "groq"
@@ -718,7 +718,7 @@ f(x,y) = \sin(y),
 -1
 \end{pmatrix}.
 \]</span></p>
-<p>Så ligningen er ikke så annerledes enn eksempel 1. Den sier at en bestemt retningsderivert alltid er null. Vi kunne egentlig byttet koordinater til et system <span class="math inline">\(p = x-t, q = x+t\)</span>, og da ville ligningen vært nøyaktig som i eksempel 1. Altså den deriverte mhp. <span class="math inline">\(p\)</span> ville vært null, og funksjonen ville vært en funksjon av <span class="math inline">\(q\)</span> alene. Det viser seg at alle funksjoner på formen</p>
+<p>Så ligningen er ikke så annerledes enn Eksempel 1. Den sier at en bestemt retningsderivert alltid er null. Vi kunne egentlig byttet koordinater til et system <span class="math inline">\(p = x-y, q = x+y\)</span>, og da ville ligningen vært nøyaktig som i Eksempel 1. Altså den deriverte mhp. <span class="math inline">\(p\)</span> ville vært null, og funksjonen ville vært en funksjon av <span class="math inline">\(q\)</span> alene. Det viser seg at alle funksjoner på formen</p>
 <p><span class="math display">\[
 f(x,y) = g(x+y)
 \]</span></p>
@@ -728,13 +728,13 @@ f(x,y) = g(x+y)
 </section>
 <section id="transport" class="level3">
 <h3 class="anchored" data-anchor-id="transport">Transport</h3>
-<p>Hvorfor kaller vi ligningen i eksempel 2 for en transportligning?</p>
+<p>Hvorfor kaller vi ligningen i Eksempel 2 for en <em>transport-</em>ligning?</p>
 <p>La oss nå anta en av variablene måler tid, vi omdøper <span class="math inline">\(y\)</span> til <span class="math inline">\(t\)</span>, og skriver ligningen som</p>
 <p><span class="math display">\[
 \frac{\partial u}{\partial t} = c\frac{\partial u}{\partial x}, \quad u(x,0) = g(x)
 \]</span></p>
 <p>Løsningen med hensyn på tiden <span class="math inline">\(t\)</span> er altså <span class="math inline">\(u(x,t) = g(x+ct)\)</span></p>
-<p>Tolkningen er da at initialsignalet <span class="math inline">\(g(x)\)</span> flytter seg langs <span class="math inline">\(x\)</span>-aksen med konstant fart <span class="math inline">\(c\)</span>.</p>
+<p>Tolkningen er da at initialsignalet (initial, fordi den er gitt for <span class="math inline">\(t = 0\)</span>) <span class="math inline">\(g(x)\)</span> flytter seg langs <span class="math inline">\(x\)</span>-aksen med konstant fart <span class="math inline">\(c\)</span>.</p>
 </section>
 <section id="oppgave" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave">Oppgave</h3>
@@ -778,13 +778,13 @@ f(x,y)u + g(x,y)u_x + h(x,y)u_{yy} = 0
 <p><span class="math display">\[
 u_t + c(x,t)u_x = f(x,t)
 \]</span></p>
-<p>er lineær og førsteordens. Funksjonene <span class="math inline">\(a(x,t)\)</span> og <span class="math inline">\(f(x,t)\)</span> er ikke et problem for linearitet, da de ikke er avhengig av <span class="math inline">\(u\)</span>.</p>
+<p>er lineær og førsteordens. Funksjonene <span class="math inline">\(a(x,t)\)</span> og <span class="math inline">\(f(x,t)\)</span> er ikke et problem for linearitet, da de ikke er avhengige av <span class="math inline">\(u\)</span>.</p>
 </section>
 <section id="b-schrødingers-ligning" class="level4">
 <h4 class="anchored" data-anchor-id="b-schrødingers-ligning">b) Schrødingers ligning</h4>
 <p><span class="math display">\[
 i\hbar u_t = -\frac{\hbar^2}{2m}  u_{xx} + V(x) u = 0
-\]</span> er lineær og andreordens.</p>
+\]</span> er lineær og andreordens. (Symbolet <span class="math inline">\(\hbar\)</span> er en reell konstant og <span class="math inline">\(i\)</span> er den imaginære enheten. Lingingen er altså kompleks-verdig.)</p>
 </section>
 <section id="c-klein-gordons-ligning" class="level4">
 <h4 class="anchored" data-anchor-id="c-klein-gordons-ligning">c) Klein-Gordons ligning</h4>
@@ -812,7 +812,7 @@ u_{xxxx} + u_{xxyy} + u_{yyyy} = 0
 <p><span class="math display">\[
 u_t + uu_x + u_{xxx} = 0
 \]</span></p>
-<p>er ikke-lineær pga leddet <span class="math inline">\(uu_x\)</span> og tredjeordens.</p>
+<p>er ikke-lineær pga. leddet <span class="math inline">\(uu_x\)</span> (som er kvadratisk) og tredjeordens pga. leddet <span class="math inline">\(u_{xxx}\)</span>.</p>
 </section>
 <section id="g-eikonalligningen" class="level4">
 <h4 class="anchored" data-anchor-id="g-eikonalligningen">g) Eikonalligningen</h4>
